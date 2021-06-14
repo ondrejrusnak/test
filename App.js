@@ -1,36 +1,19 @@
-import React from 'react';
-import { StyleSheet,Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import LoginScreen from './screens/LoginScreen';
+import Chat from './screens/Chat';
+const Stack=createStackNavigator();
 
-const YourApp = () => {
+export default function App() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={styles.bigBlue}>
-        Kokot pica u holica {"\n"}spinava ric a chlapata mindza! 🎉
-        {"\n"}
-        {"\n"}
-        Milujem svoje cecky, sú jak dva koláče,
-        {"\n"}
-        milujem vás všeckých, (kokot) všetci chodte do piče.
-      </Text>
-    </View>
-  );
-};
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 50,
-  },
-  bigBlue: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 30,
-	textAlign:'center',
-
-  },
-  red: {
-    color: 'red',
-  },
-});
-
-
-export default YourApp;
+    <NavigationContainer>
+        <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Chat" component={Chat} />
+        </Stack.Navigator>
+    </NavigationContainer>
+  )
+}
 
