@@ -3,6 +3,7 @@ import React, { useState, useCallback, useEffect, useLayoutEffect } from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'
 import 'firebase/firestore';
 import firebase from 'firebase/app'
+import SlackMessage from '../SlackMessage'
   function Chat() {
     const [messages, setMessages] = useState([]);
     const app=firebase.app();
@@ -34,7 +35,10 @@ import firebase from 'firebase/app'
       ));
       return unsubscribe;
       }, [])
-  
+      const renderSlack=(props)=> {
+        
+        return <SlackMessage {...props}/>
+      }
     return (
       <GiftedChat
         messages={messages}
@@ -44,6 +48,7 @@ import firebase from 'firebase/app'
           _id: global.nick,
           name:global.nick,
         }}
+        renderMessage={renderSlack}
       />
     )
   }
